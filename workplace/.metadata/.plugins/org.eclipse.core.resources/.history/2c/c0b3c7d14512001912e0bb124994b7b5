@@ -1,0 +1,17 @@
+package practiceCode;
+
+import java.util.Scanner;
+
+public class Demo04 {
+	public static void main(String[] args) {
+		Scanner sc =new Scanner(System.in);
+		int inputyear = sc.nextInt();
+		
+		if((inputyear%4==0&&inputyear%100!=0)||inputyear%400==0){
+			System.out.println("闺年");
+		}else{
+			System.out.println("不是闺年");
+		}
+	}
+
+}

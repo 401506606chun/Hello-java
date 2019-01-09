@@ -1,0 +1,10 @@
+package cn.itcast.day07.demo02;
+
+public class Demo07ArrayListCustom {
+	public static void main(String[] args) {
+		Person one = new Person("小明",18);
+		Person two = new Person("小花",17);
+		
+	}
+
+}

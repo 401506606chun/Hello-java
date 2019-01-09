@@ -1,0 +1,20 @@
+package practiceCode;
+
+import java.lang.String;
+
+public class Demo201901081 {
+	public class newString extends String{
+		string a = "abc";
+		public String() {
+	        System.out.println("String 重写");
+	        this.a = "abc"
+	    }
+	}
+	
+	public static void main(String[] args) {
+		newString str= new newString;
+		str.toString(10);
+		
+	}
+
+}

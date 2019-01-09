@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ZXC_8getStateMobile.java&apos; to &apos;MyKoalaAPI/src/com.lakala.api&apos;&#x0D;&#x0A;- Original project: &apos;MyKoalaAPI&apos;&#x0D;&#x0A;- Destination element: &apos;MyKoalaAPI/src/com.lakala.api&apos;&#x0D;&#x0A;- Original element: &apos;com.lakala.api.ZXC_8getStateMobile.java&apos;" description="Copy compilation unit" destination="/src&lt;com.lakala.api" element1="/src&lt;com.lakala.api{ZXC_8getStateMobile.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1525934467258" units="1" version="1.0"/>
+</session>

@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+
+/**
+ * 随机读取txt文件中任意一行
+ * 
+ * Math.random() 随机方法
+ * @author chengxuehong
+ */
+public class Demo5 {
+	static String directory = "D:\\Java\\workplace\\Practice\\jmeter.txt";
+	public String  randValue(String directory) throws IOException{
+		File f = new File(directory);
+        InputStreamReader isr = new InputStreamReader(new FileInputStream(f), "GBK");//读取文件时，设置编码格式，解决乱码
+        BufferedReader br = new BufferedReader(isr);
+ 
+        ArrayList<String> list = new ArrayList<String>();
+        String s = "";
+        //br.readLine() 读取每一行，存放list
+        while ((s = br.readLine()) != null) {
+            list.add(s);   
+        }
+        br.close();
+        isr.close();
+        /**
+         * list.size() =5
+         * list下标从0开始，这里+1
+         */
+        int rand_index = (int) (Math.random() * (list.size() + 1));
+        if(rand_index == list.size()){//if判断是防止下标越界
+        	System.out.println("当前随机数超出list数组大小：" + rand_index);
+        }else{
+        	System.out.println(list.get(rand_index));}
+		return s;
+	}
+
+	public static void main(String[] args) throws IOException {
+		randValue(directory);
+		
+		}
+		
+	
+}

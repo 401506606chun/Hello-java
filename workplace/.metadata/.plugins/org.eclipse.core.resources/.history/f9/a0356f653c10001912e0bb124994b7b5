@@ -1,0 +1,10 @@
+package secBase;
+
+public class Test {
+	static String str = "***********";
+	public static void main(String[] args) {
+		String Auth =secBase.testCase.decodeStr(str);
+        System.out.println(Auth);
+	}
+
+}

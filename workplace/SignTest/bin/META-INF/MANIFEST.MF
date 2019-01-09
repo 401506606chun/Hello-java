@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: SignTest
+Bundle-Version: 1.0.0
+Bundle-Name: SignTest
+Bundle-ManifestVersion: 2
+

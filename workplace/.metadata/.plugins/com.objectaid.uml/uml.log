@@ -1,0 +1,2 @@
+2019-01-07 14:54:40.165 [Worker-6] INFO    com.objectaid.uml.model.manage.DiagramManager getFactories: com.objectaid.uml.diagramFactories[ucls]: com.objectaid.uml.cls.model.ClassDiagramFactory@1bb334bd
+2019-01-07 14:54:40.253 [Worker-6] INFO    com.objectaid.uml.model.manage.DiagramManager getFactories: com.objectaid.uml.diagramFactories[useq]: com.objectaid.uml.seq.model.SequenceDiagramFactory@44732caa

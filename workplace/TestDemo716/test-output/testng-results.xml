@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="17659" started-at="2018-12-06T12:24:05Z" finished-at="2018-12-06T12:24:23Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="17659" started-at="2018-12-06T12:24:05Z" finished-at="2018-12-06T12:24:23Z">
+      <class name="com.imooc.ActionSelenium">
+        <test-method status="PASS" signature="InitDriver()[pri:0, instance:com.imooc.ActionSelenium@5b1d2887]" name="InitDriver" duration-ms="17628" started-at="2018-12-06T20:24:05Z" finished-at="2018-12-06T20:24:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- InitDriver -->
+      </class> <!-- com.imooc.ActionSelenium -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

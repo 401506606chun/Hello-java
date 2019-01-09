@@ -1,0 +1,143 @@
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import javax.crypto.Cipher;
+
+import com.lakala.amber.util.Base64;
+
+/**
+ * @description RSA加密相关
+ * @company kaolazhengxin
+ * @author zhangxiaochun@kaolazhengxin.com
+ * @date 2018年5月26日
+ */
+public class RSAUtil{
+
+	/**
+	 * RSA私钥加密
+	 * @param json
+	 * @param rsaPubKey
+	 * @return
+	 * @throws CoreException 
+	 */
+	public static String encryptByRSA(String json, String rsaPubKey) {
+
+		try {
+			PKCS8EncodedKeySpec priv_spec = new PKCS8EncodedKeySpec(Base64.decode(rsaPubKey));
+			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			PrivateKey privKey = keyFactory.generatePrivate(priv_spec);
+			Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			cipher.init(Cipher.ENCRYPT_MODE, privKey);
+			byte[] data= cipher.doFinal(json.getBytes());
+			
+			return new String(Base64.encode(data));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	/**
+	 * RSA公钥加密
+	 * @param key
+	 * @param content
+	 * @return
+	 * @throws CoreException 
+	 */
+	public static String encryptByRSAPub(String json, String publicKey) {
+
+		try {
+			X509EncodedKeySpec pubSpec = new X509EncodedKeySpec(Base64.decode(publicKey));
+			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			PublicKey pubKey = keyFactory.generatePublic(pubSpec);
+			Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			cipher.init(Cipher.ENCRYPT_MODE, pubKey);
+			byte[] data= cipher.doFinal(json.getBytes());
+			
+			return new String(Base64.encode(data));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	/**
+	 * RSA私钥解密
+	 * @param privateKey
+	 * @param content
+	 * @return
+	 */
+	public static byte[] decryptByRSA(String content, String privateKey) {
+		try {
+			byte[] keyBytes = Base64.decode(privateKey);  
+			PKCS8EncodedKeySpec priv_spec = new PKCS8EncodedKeySpec(keyBytes);
+			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			PrivateKey privKey = keyFactory.generatePrivate(priv_spec);
+			Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			cipher.init(Cipher.DECRYPT_MODE, privKey);
+			byte[] data= cipher.doFinal(Base64.decode(content));
+			return data;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * RSA公钥解密
+	 * @param publicKey
+	 * @param content
+	 * @return
+	 */
+	public static String decryptByRSAPub(String content, String publicKey) {
+		try {
+			X509EncodedKeySpec pubSpec = new X509EncodedKeySpec(Base64.decode(publicKey));
+			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			PublicKey pubKey = keyFactory.generatePublic(pubSpec);
+			Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+			cipher.init(Cipher.DECRYPT_MODE, pubKey);
+			byte[] data= cipher.doFinal(Base64.decode(content));
+
+			return new String(data);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/** 
+	 * 获取随机数字 
+	 *  
+	 * @param length 
+	 *            字符串长度 
+	 * @return 
+	 */  
+	public static String getRandomCharAndNum(Integer length) {  
+	    String str = "";  
+	    Random random = new Random();  
+	    for (int i = 0; i < length; i++) {  
+	    	str += String.valueOf(random.nextInt(10));  
+	    }  
+	    return str;  
+	}
+	
+	public static void main(String args[]) throws Exception {
+		String rsaPubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPEEEi+8JkGSAlKpD1wFiIq0QKzPls156755TJnohQ+Uqg7wFaC0jtnvnMZciymgMy9T6I2zdU/E4XK0U4KuS33Rz65cK4Ccl9dNpO+Vd37pdXGcqzaKjkLzrGOXJdA/4zKL5Lqp04OzTVue0ZEX0cS4HZwgb5woOhJF4Zh3T0FwIDAQAB";
+		String rsaPriKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAI8QQSL7wmQZICUqkPXAWIirRArM+WzXnrvnlMmeiFD5SqDvAVoLSO2e+cxlyLKaAzL1PojbN1T8ThcrRTgq5LfdHPrlwrgJyX102k75V3ful1cZyrNoqOQvOsY5cl0D/jMovkuqnTg7NNW57RkRfRxLgdnCBvnCg6EkXhmHdPQXAgMBAAECgYAK+310mQ0QMBmWoNDl/LEPNM6RYbDYGSlXVWzHmYLvbGO9PPvGlM0xaJ3Wgg3JICeUttzpFqMFxCSehLTYnfpWwLokamsYbuLB8X446JKUMNVD2L29gGuzYCf03OPZPKwlKrXIBr9H/1GehMdB5224LEmHvKgPG0KAZs0tQVI3eQJBAPUeU+D/JsBv86JiQQkYUYNnf/SaKRxKil2fM3vWuCz+v/N3STk2tWTKt+6uX9fXuRkHPPd/5K8aaCX8HV/4//UCQQCVahz9xEmXWJSLyC1YOtZBLxfrwxNFcB6ywToOh2+wnIno9AfCSomgI+dt1Rp7QV5p6ERyM9jqAs8weX2hRxhbAkEA3Ee0+a5TFP2G5ZeG+rVwC7cntpoT9+jFD/3SNqhwO3904UeB9njD6yCCy2zJlR+4qFVo5MN6sCH7FqfLfkQ3QQJANgs4y01pdPXUXS8dv7EgeFlpZJyd5trkL7IWptS0QISOmZVTDSLa3vK9rguL1ZNSbCpYP5qjVhmICbeYCnLlywJAImhPjrWG60odtU4q6cZQGr8CEJzP3zyS/iQEMAofEfpde6MaXvrhorgRZCXvnpBemvwgZwCAceR6Ac4px7owKQ==";
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("loanId", "201601070000000002");
+		param.put("repaymentStatus", "2");
+		param.put("peroidNum", "2");
+		param.put("repaymentTime", "2");
+//		byte params[] = JsonUtils.jsonFromObject(param, "UTF-8");
+//		System.out.println("params=" + encryptByRSAPub(new String(params), rsaPubKey));
+//		System.out.println("params=" + new String (decryptByRSA(encryptByRSAPub(new String(params), rsaPubKey), rsaPriKey)));
+	}
+}

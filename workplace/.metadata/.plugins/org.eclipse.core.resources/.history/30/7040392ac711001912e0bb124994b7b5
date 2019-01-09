@@ -1,0 +1,16 @@
+package cn.itcast.day09.demo02;
+
+public class Demo01Calc {
+	public static void main(String[] args) {
+		Calculator cal = new CalculatorImpl();
+		calc(cal);
+	}
+	// 参数是接口类型：计算器接口
+	public static void calc(Calculator calculator){
+		int a =10;
+		int b= 20;
+		int c = calculator.sum(a, b);
+		System.out.println(c);
+	}
+	
+}

@@ -1,0 +1,26 @@
+package cn.itcast.day07.demo02;
+
+import java.util.Scanner;
+
+public class Demo02Login {
+	public static void main(String[] args) {
+		// 定义两个变量 存放用户名和密码
+		String userName = "zhangxiaochun";
+		String userPassword = "a1234567";
+
+		// 键盘输入用户名和密码
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入用户名：");
+		String name = sc.next();
+		System.out.println("请输入密码：");
+		String password = sc.next();
+		
+		if(name.equalsIgnoreCase(userName)&&password.equals(userPassword)){
+			System.out.println("欢迎你");
+		}else{
+			System.out.println("用户名或密码错误");
+		}
+	}
+
+}

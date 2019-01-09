@@ -1,0 +1,30 @@
+package secBase;
+
+import org.apache.commons.codec.binary.Base64;  
+import org.apache.commons.codec.digest.DigestUtils;  
+
+public class testBase64Util {
+        
+    public static String encodeStr(String plainText){  
+        byte[] b=plainText.getBytes();  
+        Base64 base64=new Base64();  
+        b=base64.encode(b);  
+        String s=new String(b);  
+        return s;  
+    }  
+
+    public static String decodeStr(String encodeStr){  
+        byte[] b=encodeStr.getBytes();  
+        Base64 base64=new Base64();  
+        b=base64.decode(b);  
+        String s=new String(b);  
+        return s;  
+    }  
+    public static void main(String[] argus){
+    	testBase64Util encode =new testBase64Util();
+            String str = "********************";
+            String Auth =encode.encodeStr(str);
+            System.out.println(Auth);
+           
+    }
+}

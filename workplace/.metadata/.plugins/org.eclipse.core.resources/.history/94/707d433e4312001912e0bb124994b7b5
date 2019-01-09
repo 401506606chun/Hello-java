@@ -1,0 +1,32 @@
+package practiceCode;
+
+import java.util.Scanner;
+
+public class Demo02 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("请输入三个数字");
+		int a= sc.nextInt();
+		int b= sc.nextInt();
+		int c= sc.nextInt();
+		
+		int max=0;
+		if(a>b&&a>c){
+			max =a;
+		}else if(b>a&&b>c){
+			max=b;
+		}else if(c>a&&c>b){
+			max=c;
+		}else{
+			break;
+		}
+		
+		if(max!=0){
+		System.out.println(a+","+b+","+c+"中最大值是"+max);
+		}else{
+			System.out.println("系统异常");
+		}
+		
+	}
+}

@@ -1,0 +1,26 @@
+package cn.itcast.day09.demo;
+
+/*
+ *使用接口作为左侧类型的好处：
+ *屏蔽掉了右侧的个性特有内容，达到隔离、统一的目的。
+ *
+ *面向接口编程：
+ *如果使用的功能，接口已经可以满足，那么就不在乎具体的类是谁，只在乎接口即可。
+ * 
+ * 
+ * 
+*/
+public class Demo03Interface {
+	public static void main(String[] args) {
+		Animal cat = new Cat();
+		Animal dog = new Dog();
+		method(cat);
+		method(dog);
+	}
+	public static void method(Animal animal){
+		animal.eat();
+		animal.sleep();
+//		animal.catchMouse();   不能调用Cat专有对象
+	}
+
+}

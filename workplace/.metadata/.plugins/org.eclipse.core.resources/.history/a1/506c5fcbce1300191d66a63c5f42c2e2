@@ -1,0 +1,45 @@
+package practiceCode;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/*
+ * 7、java从键盘输入三个整数,实现从小到大排序
+ * 
+ * 分析：
+ * 输入三个int a b c
+ * 比较大小
+*/
+public class Demo07 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入三个数：");
+		
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		
+		int [] arrayIn ={a,b,c};
+//		Arrays.sort(arrayIn);
+		
+		System.out.println(arrayIn);
+//		System.out.println("输入的三个数为：a="+a+"，b"+"="+b+"，c"+"="+c);
+		
+		
+		
+	}
+//	public int max(int a , int b , int c ){
+//		if (a>b){
+//			if (b>c){
+//				System.out.println("排序后为"+a+","+b+","+c);
+//			}else(a<c){
+//				System.out.println("排序后为"+c+","+a+","+b);
+//				
+//			}else if (b<c){
+//				System.out.println("排序后为"+c+","+b+","+a);
+//				
+//			}
+//		}
+//	}
+//
+}

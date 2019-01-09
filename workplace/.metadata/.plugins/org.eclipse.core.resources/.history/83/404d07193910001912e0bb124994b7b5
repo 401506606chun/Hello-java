@@ -1,0 +1,15 @@
+package secBase;
+
+import secBase.testCase.Base64Util;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Base64Util encode =new Base64Util();
+        String str = "********************";
+        String Auth =encode.encodeStr(str);
+        System.out.println(Auth);
+	}
+
+}

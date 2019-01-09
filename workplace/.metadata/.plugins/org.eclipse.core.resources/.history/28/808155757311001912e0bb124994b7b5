@@ -1,0 +1,40 @@
+package cn.itcast.day07.demo02;
+
+import java.util.ArrayList;
+
+/*
+ * ArrayList类
+ * java.util.ArrayList
+ * 
+ * ArrayList<范型> list = new ArrayList<>();
+ *范型：就是集合当中放的全部都是统一的什么类型
+ *注意：范型只能是引用类型不能用基本类型 
+ * 
+ * 已有集合操作：
+ * 1 添加
+ * add 对于ArrayList来讲返回值 一定是true
+ * 2 获取元素
+ * get
+ * 3 获取长度
+ * 
+ */
+public class Demo05ArrayList {
+	public static void main(String[] args) {
+		ArrayList<String> list = new ArrayList<>();
+		System.out.println(list);
+
+		// 添加元素
+		list.add("鹿晗");
+		list.add("张艺兴");
+		list.add("张靓颖");
+		list.add("谢娜");
+		
+		System.out.println(list);
+		System.out.println(list.get(3));
+		
+		
+		
+
+	}
+
+}

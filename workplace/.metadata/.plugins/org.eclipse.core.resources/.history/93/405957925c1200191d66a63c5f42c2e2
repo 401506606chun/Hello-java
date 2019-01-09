@@ -1,0 +1,59 @@
+package practiceCode;
+
+import java.util.Scanner;
+
+/*
+ * 6、完成收银柜台收款程序
+ * 编写一个收银柜台收款程序。
+ * 
+ * 根据单价、购买数量以及收款进行计算并输出应收金额和找零；
+ * 当总价大于或者等于500，享受8折优惠。
+ * 
+ * 分析：
+ * 输入三个值   单价 购买数量 收款金额
+ * 输出应收金额和找零
+ * 总价大于或等于500时，打8折
+ * 
+ * 单价 univalence
+ * 购买数量 num
+ * 收款  charge
+ * 
+ * 应收 receivable
+ * 找零 change
+ * 
+ * 计算应收=单价*数量
+ * 判断 >=500 8折
+ * 			<500   不打折 
+ * 找零 = 收款金额-应收
+ * 
+ */
+public class Demo06 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入单价：");
+		double univalence = sc.nextDouble();
+		System.out.println("请输入数量：");
+		double num = sc.nextInt();
+		System.out.println("请输入收款金额：");
+		double charge = sc.nextDouble();
+
+		sc.close();
+		
+		double receivable =univalence*num;
+		if (receivable>=500){
+			receivable= receivable*0.8;
+		}
+		System.out.println("应收金额：" +receivable+ ",找零"
+				+ (charge-receivable));
+
+	}
+//应收金额方法
+	public double receivable(double a, double b) {
+		if (a * b >= 500) {
+			return a * b * 0.8;
+		} else {
+			return a * b;
+		}
+	}
+
+}

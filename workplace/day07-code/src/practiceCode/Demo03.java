@@ -1,0 +1,25 @@
+package practiceCode;
+
+import java.util.Scanner;
+
+/*
+ * 判断是否是闺年
+ * 
+ * 分析：
+ *闺年  数字能被4整除不能被100整除 或者 能被400整除 
+*/
+public class Demo03 {
+	public static void main(String[] args){
+		//输入一个年份
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入年份");
+		int year = sc.nextInt();
+		sc.close();
+		//判断是否是闺年
+		if(year%4==0 && year%100!=0|| year%400==0){
+			System.out.println(year+"年"+"是闺年");
+		}else{
+			System.out.println(year+"年"+"不是闺年");
+		}
+	}
+}	

@@ -1,0 +1,26 @@
+package cn.itcast.day07.demo03;
+
+import java.util.ArrayList;
+
+public class Demo08HeroList {
+	public static void main(String[] args) {
+
+		Hero s1 = new Hero("蔡文姬", 70);
+		Hero s2 = new Hero("貂蝉", 80);
+		Hero s3 = new Hero("狄仁杰", 79);
+		Hero s4 = new Hero("东皇", 75);
+		Hero s5 = new Hero("韩信", 90);
+
+		ArrayList<Hero> list = new ArrayList<Hero>();
+		list.add(s1);
+		list.add(s2);
+		list.add(s3);
+		list.add(s4);
+		list.add(s5);
+
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getName()+"战斗力"+list.get(i).getAttackScore());
+		}
+	}
+
+}

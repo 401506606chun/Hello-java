@@ -1,0 +1,81 @@
+package signTest;
+/*xiaocongcong
+2019/1/4
+RSA加密方法
+
+*
+*signTest包下 Demo为加/解密方法
+*Test为验证方法正确性
+*
+*/
+
+import java.security.MessageDigest;
+import java.util.UUID;
+public class Demo {
+
+
+	/** 
+    * 生成要签名的字符串 
+    *   
+    */ 
+   public String getSignature(String channel, String mobile, String identityCard, String noncestr) throws Exception {
+       String sKey = "channel=" + channel + "&mobile=" + mobile + "&identityCard=" + identityCard
+               + "&noncestr=" + noncestr;
+       return getSignature(sKey);
+   }
+
+
+   /** 
+    * 生成签名 
+    *   
+    */ 
+   public String getSignature(String sKey) throws Exception {
+       String ciphertext = null;
+       MessageDigest md = MessageDigest.getInstance("SHA-1");
+       byte[] digest = md.digest(sKey.toString().getBytes());
+       ciphertext = byteToStr(digest);
+       return ciphertext.toLowerCase();
+   }
+   
+
+   /** 
+    * 将字节数组转换为十六进制字符串 
+    *  
+    * @param byteArray 
+    * @return 
+    */ 
+   private String byteToStr(byte[] byteArray) {  
+       String strDigest = "";  
+       for (int i = 0; i < byteArray.length; i++) {  
+           strDigest += byteToHexStr(byteArray[i]);  
+       }  
+       return strDigest;  
+   }
+   
+   
+   /** 
+    * 将字节转换为十六进制字符串 
+    *  
+    * @param mByte 
+    * @return 
+    */ 
+   private String byteToHexStr(byte mByte) {  
+       char[] Digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };  
+       char[] tempArr = new char[2];  
+       tempArr[0] = Digit[(mByte >>> 4) & 0X0F];  
+       tempArr[1] = Digit[mByte & 0X0F];  
+
+       String s = new String(tempArr);  
+       return s;  
+   }
+   
+   /** 
+    * 生成签名所需的秘钥，即 noncestr
+    *   
+    */ 
+   public String getNoncestr() throws Exception {
+	   String nonceStr = UUID.randomUUID().toString().replace("-", "");
+       return nonceStr;
+   }
+
+}

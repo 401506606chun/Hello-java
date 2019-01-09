@@ -1,0 +1,29 @@
+package cn.itcast.day09.demo01;
+
+/*
+*  如何使用接口与实现类？
+* 
+* 1 创建
+* 接口名称 引用名 = new 实现类名称（）；
+* 2 调用
+* 引用名.抽象类名称
+* 
+* 左边是接口类型，那么只能调用接口当中定义好的内容，不能调用右侧实现类中特有的内容（接口隔离）
+* 当调用接口当中的抽象方法时，真正进行运行的是右侧的new的时候类的具体方法
+* 调用的时候看左边，运行时候看右边。 
+* 
+*/
+
+public class Demo01Interface {
+	public static void main(String[] args) {
+//		创建
+		Animal cat = new Cat();
+//		调用接口中定义好的抽象方法
+		cat.eat();
+		cat.sleep();
+		
+//		cat.catchMouse();  不能调用Cat中的方法内容     cat对象是接口类型  只能用接口中的抽象方法
+	}
+	
+}
+

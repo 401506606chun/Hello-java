@@ -1,0 +1,16 @@
+package cn.itcast.day07.demo;
+/*字符串创建的常见的2+1种方式
+ * 
+ * 常用的两个构造方法
+ * public String(char[] array):参数是一个字符数组 ，根据官也街数组的内容来创建一个字符串
+*/
+public class Demo02StringInit {
+public static void main(String[] args) {
+	char[] array = {'h','e','l','l','o'};
+//	根据字符数组来创建字符串
+//	类名称 对象名 = new 类名称（构造参数）；
+	String str = new String(array);
+	System.out.println(str);
+	
+}
+}

@@ -1,0 +1,6 @@
+package cn.itcast.day09.demo02;
+
+public interface Calculator {
+	public abstract sum(int a , int b)
+
+}

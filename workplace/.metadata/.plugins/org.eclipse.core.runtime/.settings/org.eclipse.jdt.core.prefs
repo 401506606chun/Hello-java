@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.core.builder.resourceCopyExclusionFilter=*.ucls,*.useq
+org.eclipse.jdt.core.classpathVariable.M2_REPO=C\:/Users/zhangxc/.m2/repository
+org.eclipse.jdt.core.codeComplete.visibilityCheck=enabled

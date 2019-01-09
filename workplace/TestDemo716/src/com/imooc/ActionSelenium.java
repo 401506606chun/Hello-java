@@ -1,0 +1,313 @@
+package com.imooc;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+
+public class ActionSelenium {
+private static final File File = null;
+//定义全局变量driver
+	public static WebDriver driver;
+//	public void DriverBase(String browser){
+//		SelectDriver selectDriver = new SelectDriver();
+//		selectDriver.driverName(browser);
+//	}
+	
+//	初始化Driver
+//	@Test
+	public void InitDriver(){
+		String url = "https://www.imooc.com/";
+//以下是chrome浏览器驱动
+//		System.setProperty("webdriver.chrome.driver","D:\\Java\\chromedriver\\chromedriver.exe");
+//		driver = new ChromeDriver();
+//		driver.get(url);
+//		以下是firefox浏览器驱动
+		//1. 声明ProfilesIni对象
+//		ProfilesIni allProfiles = new ProfilesIni();
+//		// 2.调用allProfiles对象的getProfile方法获取名为“WebDriver”的用户配置文件
+//		FirefoxProfile profile = allProfiles.getProfile("WebDriver");
+//		// 3.调用profile对象的setPreference方法，设定浏览器启动时首页显示为url
+//		profile.setPreference("browser.startup.homepage", "https://www.imooc.com/");
+//		// 指定Profile对象作为参数，实例化FirefoxDriver对象
+//		// 实现使用指定Profile配置文件启动Firefox浏览器窗口
+////		System.setProperty ( "webdriver.firefox.bin","D:\\Mozilla Firefox\\firefox.exe" );
+		System.setProperty("webdriver.firefox.bin", "D:\\Mozilla Firefox\\firefox.exe" );		
+		System.setProperty("webdriver.gecko.driver","D:\\Java\\geckodriver\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		driver.get(url);
+//		this.DriverBase("chrome");
+		
+		System.out.println("打开页面了");
+		driver.manage().window().maximize();
+		System.out.println(driver.getTitle());
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (url.equals(driver.getTitle())) {
+			screenPic();
+		};
+	}
+
+	
+	
+//	按钮
+	public void Btn(){
+		WebElement login = driver.findElement(By.id("js-signin-btn"));
+		login.click();
+//		WebElement logBtn1 = driver.findElement(By.className("className"));
+//		WebElement logBtn2 = driver.findElement(By.cssSelector("selector"));
+//		WebElement logBtn3 = driver.findElement(By.id("id"));
+//		WebElement logBtn4 = driver.findElement(By.linkText("linkText"));
+//		WebElement logBtn5 = driver.findElement(By.name("name"));
+//		WebElement logBtn6 = driver.findElement(By.partialLinkText("linkText"));
+//		WebElement logBtn7 = driver.findElement(By.tagName("name"));
+//		WebElement logBtn8 = driver.findElement(By.xpath("xpathExpression"));
+		
+	}
+//	输入框
+	public void Input(){
+		try{
+			Thread.sleep(3000);
+			}catch(Exception e){
+			e.printStackTrace();
+		}
+		WebElement user = driver.findElement(By.name("email"));
+		user.sendKeys("aiyazxc@163.com");
+		WebElement password = driver.findElement(By.name("password"));
+		password.sendKeys("a1111111");
+	}
+//	点击登录
+	public void login2(){
+//		try{
+//			Thread.sleep(3000);
+//			}catch(Exception e){
+//			e.printStackTrace();
+//		}
+		WebElement loginAlert = driver.findElement(By.xpath("//div[@class='rlf-group clearfix']"));
+		loginAlert.click();
+	}
+//	看是否登录成功
+	public void isLoginSuccess(){
+		try{
+			Thread.sleep(3000);
+			}catch(Exception e){
+			e.printStackTrace();
+		}
+		WebElement loginSuccess = driver.findElement(By.xpath("//a[@id='header-avator']/img"));
+		String result = loginSuccess.getAttribute("src");
+		System.out.println("头像是"+result);
+		if(result.equals("https://img3.mukewang.com/54584802000154b602200220-100-100.jpg")){
+//		if(result == "https://img3.mukewang.com/54584802000154b602200220-100-100.jpg")
+//		比较String类型内容时，用a.equals(b)
+			System.out.println("登录成功");
+		} else{
+			System.out.println("登录失败");
+		}
+		
+	}
+//	去到修改个人信息页面
+	public void modify(){
+		driver.get("https://www.imooc.com/user/setprofile");
+		WebElement name = driver.findElement(By.xpath("//label[contains(text(),'昵称：')]//following-sibling::div//input"));
+		String userName = name.getAttribute("value");
+		System.out.println("用户名是"+userName);
+		if(userName.equals("weixin_春儿_1")){
+			System.out.println("成功进入个人信息修改页面");
+		}else{
+			driver.get("https://www.imooc.com/user/setprofile");
+		}
+		}
+	//确认打开弹框
+		public void alert(){
+			WebElement modify = driver.findElement(By.className("icon-note"));
+			modify.click();
+			WebElement alertText = driver.findElement(By.xpath("//div[@class='moco-modal-title']/div/span"));
+			if(alertText.equals("编辑个人信息")) {
+				System.out.println("成功打开弹框");	
+			} else {
+				System.out.println("未成功打开弹框");	
+			}
+			
+		}
+
+//		单选框的选择
+		public void radioBox(){
+//			定位性别
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			WebElement sex_node0 = driver.findElement(By.xpath("//div[@class='settings-cont clearfix']//label[contains(text(),'女')]//parent::div"));
+//			List<WebElement> list_sex1 = sex_node0.findElements(By.tagName("input"));
+//			System.out.println(list_sex1);
+			WebElement sex_node = driver.findElement(By.xpath("//*[@id='profile']/div[4]/div"));
+			 List<WebElement> list_sex2 = sex_node.findElements(By.tagName("input"));
+			
+			System.out.println(list_sex2);
+			for(WebElement sex:list_sex2) {
+				boolean flag = sex.isSelected();
+				System.out.println(flag);
+				if (flag == true) {
+					continue;
+				}else {
+					sex.click();
+//					break;
+				}
+			driver.findElement(By.id("profile-submit")).click();
+					
+			}
+					}	
+	
+		//checkbox元素操作
+		public void check() {
+			sleep(3000);
+			//js执行脚本----限期checkbox
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("document.getElementById('auto-signin').style.display='none';");
+			sleep(2000);
+
+			String jscript = "document.getElementById('auto-signin').style.display='';";
+			js.executeScript(jscript);
+
+			WebElement auto_login = driver.findElement(By.id("auto-signin"));
+			auto_login.click();
+			boolean is_selected = auto_login.isSelected();
+			boolean is_enable = auto_login.isEnabled();
+			System.out.println("是否已选择"+is_selected);
+			System.out.println("是否可用"+is_enable);
+			
+	}
+	//等待时间方法
+		public void sleep(long sleep_time) {
+			try {
+				Thread.sleep(sleep_time);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}	
+	
+//上传头像
+		public void up_file(){
+			sleep(2000);
+			driver.get("https://www.imooc.com/user/setbindsns");
+//			WebElement img = driver.findElement(By.className("avator-img"));
+			Actions action = new Actions(driver);			
+			action.moveToElement(driver.findElement(By.className("avator-img"))).perform();
+			sleep(2000);
+			driver.findElement(By.className("js-avator-link")).click();
+			sleep(2000);
+//			input上传
+			driver.findElement(By.id("upload")).sendKeys("D:\\Java\\workplace\\TestDemo716\\230x140.jpeg");
+			driver.findElement(By.xpath("//a[contains(text(),'确定')]")).click();
+			//确认上传成功
+			System.out.println("头像上传成功");
+		}	
+//	下拉框操作
+		public void downSelectBox(){
+			driver.get("https://www.imooc.com/user/setprofile");
+			sleep(2000);
+			driver.findElement(By.className("pull-right")).click();//点击编辑按钮
+			sleep(2000);
+			
+			WebElement jobs = driver.findElement(By.xpath("//div[@class='moco-modal-dialog']//select[@id='job']"));
+			Select downlist = new Select (jobs);
+//			downlist.selectByValue("6");//value值为2
+//			downlist.selectByIndex(2);//第2个
+			System.out.println("是否多选"+downlist.isMultiple());
+			downlist.selectByVisibleText("页面重构设计");
+			
+			System.out.println(downlist.getFirstSelectedOption().getText());//获取已选择的内容
+			List<WebElement> list = downlist.getAllSelectedOptions();
+			for(WebElement option:list){
+				String select_option= option.getText();
+				if(select_option!="软件测试工程师"){
+					downlist.selectByVisibleText("软件测试工程师");
+					
+				}else{
+					System.out.println("已修改为软件测试工程师");
+				}
+			}
+			driver.findElement(By.id("profile-submit")).click();
+			//修改为软件测试工程师
+//			判断是否修改成功
+			sleep(3000);
+			WebElement work = driver.findElement(By.xpath("//label[contains(text(),'职位')]//following-sibling::div[@class='pull-left']"));
+			String work_select=work.getText();
+			if(work_select.equals("软件测试工程师")){
+				System.out.println("修改成功");
+			}else{
+				System.out.println("职业为"+work_select);
+			}
+				
+		}
+//		封装截图方法
+		public static void screenPic(){
+			String picPath = System.getProperty("user.dir");
+			System.out.println(picPath);
+			
+//			获取当前系统时间戳 
+			long time = System.currentTimeMillis();
+			String curTime = DateFormatUtils.format(time, "yyyyMMddHHmmss");
+			System.out.println(curTime);
+			String picName = picPath+"/"+curTime+".jpg";//将文件名设置为 路径+时间戳.png的格式
+//			File srcFile =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//			FileUtils.copyFile(srcFile, new File(picName));
+			System.out.println("capture screen shot begin");
+			File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			File picture = new File(picName);
+			try {
+//				FileUtils.copyFile(srcFile, new File(picName));
+				FileUtils.copyFile(srcFile, picture);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+			
+			
+		}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ActionSelenium action = new ActionSelenium();
+		action.InitDriver();
+//		screenPic();
+//		action.Btn();
+//		action.Input();
+//		action.login2();
+//		action.isLoginSuccess();
+//		action.modify();
+//		action.alert();
+//		action.radioBox();
+//		action.check();
+//		action.up_file();
+//		action.downSelectBox();
+
+	}
+
+}

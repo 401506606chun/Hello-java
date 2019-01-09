@@ -1,0 +1,20 @@
+package cn.itcast.day07.demo;
+
+/*
+ * java当中数据类型只有两种：基本类型、引用类型；
+ * 基本类型有8个关键字，除这8种之外都是引用类型；string也是一种引用类型；
+ * 
+ * 注意：只要是字符串，就是一个对象
+ * 
+ * 字符串就是一个java.lang.String的对象，里有也可以包括三部分；
+ * 1.成员变量
+ * 2.构造方法
+ * 3.成员方法
+*/
+public class Demo01String {
+static String str ="Hello world";
+
+public static void main(String[] args) {
+	System.out.println(str);
+}
+}

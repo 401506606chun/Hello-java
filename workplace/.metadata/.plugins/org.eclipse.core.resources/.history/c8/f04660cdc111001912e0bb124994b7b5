@@ -1,0 +1,26 @@
+package cn.itcast.day09.demo;
+
+/*
+ * 定义一个抽象方法
+ * 
+ * public abstract 返回值类型 方法名称（参数类型 参数名称）；
+ * 
+ * 抽象方法，修饰如果写  一定是abstract
+ * 如果不写 可以省略，默认就是public abstract
+ * 抽象方法只有方法头，没有方法体大括号
+ * 
+ * 如何使用接口与实现类？
+ * 
+ * 1 创建
+ * 接口名称 引用名 = new 实现类名称（）；
+ * 2 调用
+ * 引用名.抽象类名称
+ * 
+*/
+
+
+public interface Demo01Interface {
+	
+
+}
+

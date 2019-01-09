@@ -1,0 +1,16 @@
+package secBase;
+
+import secBase.testCase;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		testCase testCase = new testCase();
+//		Base64Utils ent =new Base64Utils();
+        String str = "********************";
+        String Auth =testCase.encodeStr(str);
+        System.out.println(Auth);
+	}
+
+}

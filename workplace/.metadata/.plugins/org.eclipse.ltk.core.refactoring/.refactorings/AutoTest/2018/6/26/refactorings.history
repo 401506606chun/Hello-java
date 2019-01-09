@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;webDriver&apos; from expression &apos;driver=driver&apos;&#x0D;&#x0A;- Original project: &apos;AutoTest&apos;&#x0D;&#x0A;- Variable name: &apos;webDriver&apos;&#x0D;&#x0A;- Destination method: &apos;ZhangXiaoChun.ActionSelenium.InitDriver()&apos;&#x0D;&#x0A;- Variable expression: &apos;driver=driver&apos;&#x0D;&#x0A;- Replace occurrences of expression with variable" description="Extract local variable &apos;webDriver&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src&lt;ZhangXiaoChun{ActionSelenium.java" name="webDriver" replace="true" selection="259 19" stamp="1530164343639" version="1.0"/>
+</session>

@@ -1,0 +1,12 @@
+package test3DES;
+
+public class Test {
+	static String params = "{\"loanId\":\"201601070000000002\",\"repaymentStatus\":\"2\",\"repaymentStatus\":\"2cb24c1aafea3674b704849253ff82c04c742d1ca67afd8d7748a9cbcc6a78a8\"}";
+	public static void main(String[] args){
+		
+		System.out.println("加密后Data"+secTest.encryptString(params));
+		System.out.println("解密后Data"+secTest.decodeString(secTest.encryptString(params)));
+		
+	}
+
+}

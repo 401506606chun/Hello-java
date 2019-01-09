@@ -1,0 +1,13 @@
+package cn.itcast.day09.demo;
+
+public class Demo03Interface {
+	public static void main(String[] args) {
+		Animal cat = new Cat();
+		Animal dog = new Dog();
+		
+	}
+	public static void method(Animal animal){
+		
+	}
+
+}

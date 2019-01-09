@@ -1,0 +1,5 @@
+package cn.itcast.day09.demo;
+
+public interface Demo01Interface {
+
+}
