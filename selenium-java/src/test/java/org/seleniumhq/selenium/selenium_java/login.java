@@ -1,6 +1,6 @@
 package org.seleniumhq.selenium.selenium_java;
 
-import org.testng.annotations.Test;
+//import org.testng.annotations.Test;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
@@ -12,18 +12,33 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 public class login {
 	WebDriver driver;
 //	@Test
 	public void InitDriver() {
+		String os = System.getProperty("os.name");
+		System.out.println(os);
+//		以下是根据不同电脑走不同的驱动路径
+		if(os.contentEquals("Windows 10")){
+		//windows使用
+		System.setProperty("webdriver.chrome.driver", "D:\\Git\\demo\\selenium-java\\chromedriver.exe");
+		}else if(os.contentEquals("MAC")){
+//		MAC使用
 		System.setProperty("webdriver.chrome.driver", "//Users//jiubugaosuni//workspace//javaSelenium//chromedriver");
-		driver = new ChromeDriver();
+//		System.setProperty("webdriver.chrome.driver", "/Users/jiubugaosuni/workspace/javaSelenium/chromedriver");
+		}else {
+		System.out.println("没有这个驱动");
+		}
+//		配置浏览器（不要提示具体信息，如浏览器受到自动软件控制）
+		ChromeOptions option = new ChromeOptions();
+		option.addArguments("disable-infobars");
+		driver = new ChromeDriver(option);
 		driver.get("https://www.imooc.com");
-//		driver.manage().window().maximize();
-		driver.findElement(By.id("js-signin-btn")).click();
-
+//		浏览器最大化		
+		driver.manage().window().maximize();
 	}
 //	@test
 	public void sleep(int sleeptime) {
@@ -50,9 +65,10 @@ public class login {
 		
 	}
 //	封装element
-	@Test
+//	@Test
 	public void loginScript() {
 		this.InitDriver();
+//		往下定义变量
 		String userValue = "18612963986";
 		String passwordValue ="a1111111";
 		String userElement = "email";
@@ -65,9 +81,10 @@ public class login {
 		String headerElement = "header-avator";
 		String userInfoBy ="className";
 		String userInfoElement = "name";
-		
-		
-		sleep(1000);
+//		点击登录按钮
+		driver.findElement(By.id("js-signin-btn")).click();
+//		等待后输入用户及密码进行登录
+		sleep(3000);
 		WebElement user = driver.findElement(this.byStr(userBy, userElement));
 		user.isDisplayed();
 		WebElement password = driver.findElement(this.byStr(passwordBy, passwordElement));
@@ -81,7 +98,7 @@ public class login {
 		password.sendKeys(passwordValue);
 		loginButton.click();
 		
-		//鼠标移动到头像，检查是否登录成功
+		//	鼠标移动到头像，检查是否登录成功
 		sleep(3000);
 		WebElement header = driver.findElement(this.byStr(headerBy, headerElement));
 		header.isDisplayed();
@@ -104,7 +121,7 @@ public class login {
 		shotPath = shotPath+photo;
 		String curPath = System.getProperty("user.dir");
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		//指定了OutputType.FILE做为参数传递给getScreenshotAs()方法，其含义是将截取的屏幕以文件形式返回。
+//		指定了OutputType.FILE做为参数传递给getScreenshotAs()方法，其含义是将截取的屏幕以文件形式返回。
 		try {
 //			FileUtils.copyFile(srcFile,new File(".\\Screenshots\\screen.png"));
 			FileUtils.copyFile(srcFile, new File(curPath+"/"+shotPath));
@@ -115,14 +132,18 @@ public class login {
 		}
 		System.out.println("我截图了"+curPath+"/"+shotPath);
 	}
+	public void closeBroswer() {
+		driver.close();
+		
+	}
 	
 	
-	@Test
+//	@Test
 	public static void main(String[] args) {
 		login logins = new login();
 //		logins.InitDriver();
 		logins.loginScript();
-
+//		logins.closeBroswer();
 		}
 	}
 	
